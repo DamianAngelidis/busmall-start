@@ -12,3 +12,4 @@
 #As a marketer I want clear data on how many times different products have selected
 #As a marketer I want to compare that data to the number of times products were selected
 #As a marketer I want a visually appealling website for my consumers
+#As a marketer I want consumers to understand that they're selecting the item they are the most likely to buy

@@ -3,82 +3,110 @@
 var imageOneEl = document.getElementById('item-one');
 var imageTwoEl = document.getElementById('item-two');
 var imageThreeEl = document.getElementById('item-three');
-var catContainerEl = document.getElementById('cat-container');
+var itemContainerEl = document.getElementById('item-container');
 
 
 var recentRandomNumbers = [];
 var allItems = [];
 
-function Item(name){
-  this.name = name;
-  this.filepath = `img/${name}.jpg`;
-  this.votes = 0;
-  this.views = 0;
+var totalSelect = 0;
 
-  allCats.push(this);
+function Item(path, name){
+    this.name = name;
+    this.filepath = `img/${path}`;
+    this.votes = 0;
+    this.views = 0;
+
+    allItems.push(this);
 }
 
-new Cat('bag');
-new Cat('banana');
-new Cat('bathroom');
-new Cat('boots');
-new Cat('outsideCat');
-new Cat('sleepyCat');
-new Cat('tomatoCat');
-new Cat('yogaCat');
+new Item('bag.jpg','R2D2 Suitcase');
+new Item('banana.jpg', 'Banana Slicer');
+new Item('bathroom.jpg','Bathroom 2-in-1 Stand');
+new Item('boots.jpg', 'Open-Toed Boots');
+new Item('breakfast.jpg', 'Complete Breakfast Cooker');
+new Item('bubblegum.jpg', 'Meatball Bubblegum');
+new Item('chair.jpg', 'Orthopedic Chair');
+new Item('cthulhu.jpg', 'Cthulhu Idol');
+new Item('dog-duck.jpg', 'Duck Bill for Dog');
+new Item('dragon.jpg', 'Exotic Canned Dragon Meat');
+new Item('pen.jpg', '2-in-1 Pentensil');
+new Item('pet-sweep.jpg', 'Pet Duster Boots');
+new Item('scissors.jpg', 'Pizza Cutter Scissors');
+new Item('shark.jpg', 'Shark Sleeping bag');
+new Item('sweep.png', 'Infant Duster Onesie');
+new Item('tauntaun.jpg', 'Tauntaun Sleeping Bag');
+new Item('unicorn.jpg', 'Exotic Canned Unicore Meat');
+new Item('usb.gif', 'Tentacle USB Drive');
+new Item('water-can.jpg', 'Refillng Water Can');
+new Item('wine-glass.jpg', 'Safety Wine Glass');
 
 function render(){
-  var randomIndex = getUniqueIndex();
-  allCats[randomIndex].views++;
-  // I want to display allCats[randomIndex];
-  imageOneEl.src = allCats[randomIndex].filepath;
-  imageOneEl.alt = allCats[randomIndex].name;
-  imageOneEl.title = allCats[randomIndex].name;
 
-  var randomIndex = getUniqueIndex();
-  allCats[randomIndex].views++;
-  // I want to display allCats[randomIndex];
-  imageTwoEl.src = allCats[randomIndex].filepath;
-  imageTwoEl.alt = allCats[randomIndex].name;
-  imageTwoEl.title = allCats[randomIndex].name;
+    if  (totalSelect < 25) {   
 
+        console.log('I am rendering');
 
+        var randomIndex = getUniqueIndex();
+        allItems[randomIndex].views++;
+        imageOneEl.src = allItems[randomIndex].filepath;
+        imageOneEl.alt = allItems[randomIndex].name;
+        imageOneEl.title = allItems[randomIndex].name;
+
+        var randomIndex = getUniqueIndex();
+        allItems[randomIndex].views++;
+        imageTwoEl.src = allItems[randomIndex].filepath;
+        imageTwoEl.alt = allItems[randomIndex].name;
+        imageTwoEl.title = allItems[randomIndex].name;
+
+        var randomIndex = getUniqueIndex();
+        allItems[randomIndex].views++;
+        imageThreeEl.src = allItems[randomIndex].filepath;
+        imageThreeEl.alt = allItems[randomIndex].name;
+        imageThreeEl.title = allItems[randomIndex].name;
+    }
 }
-// helper function
+
+
 function randomNumber(min, max){
-  return Math.floor(Math.random() * (max - min + 1)) + min
+
+    return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
 function getUniqueIndex(){
 
-  var randomIndex = randomNumber(0, allCats.length-1);
+    var randomIndex = randomNumber(0, allItems.length-1);
 
-  while(recentRandomNumbers.includes(randomIndex)){
-    randomIndex = randomNumber(0, allCats.length-1);
-  }
+    while(recentRandomNumbers.includes(randomIndex)){
+        randomIndex = randomNumber(0, allItems.length-1);
+    }
 
-  if(recentRandomNumbers.length > 3){
-    recentRandomNumbers.shift();
-  }
+    if(recentRandomNumbers.length > 3){
+        recentRandomNumbers.shift();
+    }
 
-  recentRandomNumbers.push(randomIndex);
-  return randomIndex;
+    recentRandomNumbers.push(randomIndex);
+    return randomIndex;
 }
 
 function handleClick(){
-  var chosenImg = event.target.title;
 
-  for(var i = 0; i < allCats.length; i++){
-    if(allCats[i].name === chosenImg){
-      allCats[i].votes++;
+    var chosenImg = event.target.title;
+
+    for(var i = 0; i < allItems.length; i++){
+        if(allItems[i].name === chosenImg){
+        allItems[i].votes++;
+        totalSelect++;
+        console.log(totalSelect)
+        }
     }
-  }
-  render();
+    render();
 }
 
-catContainerEl.addEventListener('click', handleClick);
 
-render();
+itemContainerEl.addEventListener('click', handleClick);
+
+    render();
 
 
 

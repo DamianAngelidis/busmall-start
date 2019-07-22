@@ -11,6 +11,9 @@ var allItems = [];
 
 var totalSelect = 0;
 
+var tableBody = document.getElementById('fav-items');
+var header = ['Item Name', 'Number of Times Selected', 'Number of Times Viewed']
+
 function Item(path, name){
     this.name = name;
     this.filepath = `img/${path}`;
@@ -43,7 +46,7 @@ new Item('wine-glass.jpg', 'Safety Wine Glass');
 
 function render(){
 
-    if  (totalSelect < 25) {   
+    if  (totalSelect < 2) {   
 
         console.log('I am rendering');
 
@@ -64,6 +67,10 @@ function render(){
         imageThreeEl.src = allItems[randomIndex].filepath;
         imageThreeEl.alt = allItems[randomIndex].name;
         imageThreeEl.title = allItems[randomIndex].name;
+    }
+    else {
+        renderHeader();
+        renderTable();
     }
 }
 
@@ -103,10 +110,44 @@ function handleClick(){
     render();
 }
 
+function renderHeader() {
+
+    var trEl = document.createElement('tr');
+
+    for(var i = 0; i < header.length; i++) {
+        var thEl = document.createElement('th');
+        thEl.textContent = header[i];
+        trEl.appendChild(thEl);
+        tableBody.appendChild(trEl);
+    }
+}
+
+function renderTable() {
+
+    for(var i= 0; i < allItems.length; i++) {
+
+        var trEl = document.createElement('tr');
+
+        var thEl = document.createElement('td');
+        thEl.textContent = allItems[i].name;
+        trEl.appendChild(thEl);
+
+        var thEl = document.createElement('td');
+        thEl.textContent = allItems[i].votes;
+        trEl.appendChild(thEl);
+
+        var thEl = document.createElement('td');
+        thEl.textContent = allItems[i].views;
+        trEl.appendChild(thEl);
+
+        tableBody.appendChild(trEl);
+    }
+}
+
 
 itemContainerEl.addEventListener('click', handleClick);
 
-    render();
+render();
 
 
 

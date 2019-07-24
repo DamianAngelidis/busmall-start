@@ -7,21 +7,24 @@
     </head>
     <body>
         <header>
-                <!-- <img src = "img/body-background.jpg" id = "homeBackground"></img>  -->
-            <section>
-                <h1>BusMall Items Focus Group</h1>
-            </section>
+            <nav>
+                <section>
+                    <h1>BusMall Items Focus Group</h1>
+                </section>
 
-            <ul>
-                <li>Home</li>
-                <li>Products</li>
-                <li>About</li>
-                <li>Contact</li>
-            </ul>
+                <ul>
+                    <li>Home</li>
+                    <li>Products</li>
+                    <li>About</li>
+                    <li>Contact</li>
+                </ul>
+            </nav>
         </header>
 
         <main>
             <section id="item-container">
+                <h2>Select the item you are most likely to purchase:</h2>
+
                 <img id="item-one" src="" alt="" title="" />
                 <img id="item-two" src="" alt="" title="" />
                 <img id="item-three" src="" alt="" title="" />
@@ -36,14 +39,11 @@
             </section>
               
             <section id="results">
-                <table>
-                    <colgroup>
-                        <col></col>
-                        <col></col>
-                        <col></col>
-                        <col></col>
-                    </colgroup>
+                <h2>Results:</h2>
 
+                <canvas id="myChart" width="400" height="400"></canvas>
+
+                <table>
                     <tbody id = "fav-items"></tbody>
                 </table>        
             </section>  
@@ -53,6 +53,7 @@
             
         </footer>
 
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
         <script src = "js/app.js"></script>
         
     </body>
